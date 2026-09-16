@@ -1,14 +1,24 @@
 # Maison Clara
 
-Application web d'intendance (page HTML autonome, React via CDN).
+Application web d'intendance, publiée avec GitHub Pages :
+https://mdg64.github.io/Maison-Clara/
 
-Publiée avec GitHub Pages : le fichier servi est `index.html`.
+## Organisation
+
+- `src/maison_clara.html` : la source (React en JSX, telle qu'éditée).
+- `index.html` : **généré**, ne pas modifier à la main. Le JSX y est compilé
+  à l'avance et React est servi depuis `vendor/`, sans dépendre d'unpkg.com
+  ni de Babel dans le navigateur.
+- `manifest.json` et les icônes : installation comme application sur tablette.
 
 ## Mettre à jour
 
-Remplacer `index.html`, puis :
+Remplacer `src/maison_clara.html` (le fichier doit toujours charger React
+et Babel depuis unpkg.com : le build retire ces trois lignes), puis :
 
-    git add index.html
+    npm install
+    npm run build
+    git add -A
     git commit -m "maj"
     git push
 
