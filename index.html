@@ -22,18 +22,18 @@ button{font-family:inherit;-webkit-tap-highlight-color:transparent}
 </style>
 </head>
 <body>
-<div id="root"></div>
+<div id="root"><div id="boot" style="padding:24px;font:15px/1.5 sans-serif;color:#1a2744">Chargement de Maison Clara…<br><small>version 2026-09-16 10:18</small></div></div>
 <script>
 (function(){
   var errs=[];
   function show(){
     var r=document.getElementById('root');
-    if(!r||r.childNodes.length)return;
+    if(!r||(r.firstChild&&r.firstChild.id!=='boot'))return;
     r.innerHTML='<div style="padding:24px;font:15px/1.5 sans-serif;color:#1a2744">'
       +'<b>Maison Clara n\'a pas pu démarrer.</b><br>'
       +(errs.length?errs.map(function(e){return String(e).replace(/</g,'&lt;')}).join('<br>')
         :'Aucune erreur signalée : vérifiez la connexion puis rechargez la page.')
-      +'</div>';
+      +'<br><small>version '+"2026-09-16 10:18"+'</small></div>';
   }
   window.addEventListener('error',function(e){
     var t=e.target;
@@ -695,14 +695,14 @@ function loadProps() {
   try {
     const s = localStorage.getItem('clara_v6');
     return s ? JSON.parse(s) : null;
-  } catch {
+  } catch (_unused) {
     return null;
   }
 }
 function saveProps(p) {
   try {
     localStorage.setItem('clara_v6', JSON.stringify(p));
-  } catch {}
+  } catch (_unused2) {}
 }
 
 /* style atoms */
